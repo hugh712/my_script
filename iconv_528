@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# write this script to  transfer files from big5 to utf-8 more easier,
+# just copy it to /bin/
+# then chmod 775 iconv528
+
+
+set -e
+
+if [ $# -ne 1 ];then
+	echo "Usage:> iconv528 file"
+	exit 1;
+fi
+
+if [ ! -f $1 ];then
+	echo "file not exist"
+	exit 1;
+fi
+
+iconv -f=big5 -t=utf-8 $1 -o $1"-2"
