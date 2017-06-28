@@ -1,4 +1,6 @@
 #!/bin/bash
+# usage : remove all duplicated files but leave one
+# from Linux Shell Scripting Cookbook [Sarath Lakshman]
 
 ls -lS | awk 'BEGIN {
 	getline;getline;
@@ -13,16 +15,16 @@ ls -lS | awk 'BEGIN {
 		"md5sum "name2 | getline; csum2=$1;
 
 		if( csum1 == csum2 )
-		{print name; print name2 }
+		{print name1; print name2 }
 
 	};
 
 	size=$5; name1=name2;
 }' | sort -u > duplicate_files
 
-cat duplicate_files | xargs -I { } md5sum { } | sort | uniq -w 32 | awk
-'{ print "^"$2"$" }' | sort -u > duplicate_sample
+#cat duplicate_files | xargs -I {} md5sum {} | sort | uniq -w 32 | awk '{ print "^"$2"$" }'	| sort -u > duplicate_sample
+cat duplicate_files | xargs -I {} md5sum {} | sort | uniq -w 32 | awk '{ print $2 }'	| sort -u > duplicate_sample
 
 echo Removing..
-comm duplicate_files duplicate_sample -2 -3 | tree /dev/stderr | xargs rm
+comm duplicate_files duplicate_sample -2 -3 | tee /dev/stderr | xargs rm
 echo Removed duplicates files successfully.
