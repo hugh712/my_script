@@ -15,7 +15,7 @@ while read line;
 do 
 	ftype=`file -b "$line"`
 	let statarray["$ftype"]++;
-done<<$(find $path -type f -print)
+done < <(find $path -type f)
 
 echo "-------------File types and counts-------------"
 for ftype in "${!statarray[@]}";
