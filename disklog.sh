@@ -9,10 +9,10 @@ if [ -n $1 ];  then
 fi
 
 
-if [ ! -e $logfile ]
-then
-	printf "%-8s %-14s %-9s %-8s %-6s %-6s %-6s %s\n" "Date" "IP address" "Device" "Capacity" "Used" "Free" "Percent" "Status" > $logfile
-fi
+#if [ ! -e $logfile ]
+#then
+#	printf "%-8s %-14s %-9s %-8s %-6s %-6s %-6s %s\n" "Date" "IP address" "Device" "Capacity" "Used" "Free" "Percent" "Status" > $logfile
+#fi
 
 IP_LIST="127.0.0.1 0.0.0.0"
 (
