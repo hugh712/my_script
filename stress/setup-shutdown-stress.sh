@@ -31,13 +31,14 @@ Restart=on-failure
 #After=network-online.target
 RestartSec=15
 Environment=DISPLAY=:0
-User=$user
+User=THE_USER
 ExecStart=/usr/bin/bash /usr/bin/run_shutdown_stress
                                                                                                                                                                                               
 [Install]
 WantedBy=multi-user.target
 
 EOF
+sudo sed -i s/"User=THE_USER"/"User=$user"/g /etc/systemd/system/shutdown_stress.service
 sudo systemctl enable shutdown_stress.service
 
 #setup runtime script
