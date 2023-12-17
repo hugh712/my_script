@@ -9,7 +9,7 @@ if [ ! "$EUID" -ne 0 ]
   exit
 fi
 user=$(whoami)
-STRESS_COUNT=5
+STRESS_COUNT=50
 TARGET_DEVICE=enx6018956e2b29
 
 mkdir ~/.stress_config
